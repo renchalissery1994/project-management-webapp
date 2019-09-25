@@ -10,10 +10,16 @@ import { MatInputModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
+import { ContractorComponent } from './contractor/contractor.component';
+import { FullTimeDeveloperComponent } from './full-time-developer/full-time-developer.component';
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectManagerComponent
+    ProjectManagerComponent,
+    ContractorComponent,
+    FullTimeDeveloperComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +29,8 @@ import { MatListModule } from '@angular/material/list';
     MatInputModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatListModule
+    MatListModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

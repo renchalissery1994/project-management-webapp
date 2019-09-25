@@ -1,5 +1,15 @@
 <div style="padding: 30px">
     <h3>{{project}}</h3>
-
-    <project-manager></project-manager>
+    <div *ngIf="showLogin">
+        <p>Login</p>        
+        <mat-form-field>
+            <input matInput placeholder="User Name" [(ngModel)]="userName">
+        </mat-form-field>
+        <p><button mat-raised-button color="primary" (click)="login()">Log In</button></p>
+    </div>
+    <div *ngIf="!showLogin && user">
+        <project-manager *ngIf="user.role=='PROJECT_MANAGER'" [user]="user"></project-manager>
+        <contractor *ngIf="user.role=='CONTRACTOR'" [user]="user"></contractor>
+        <full-time-developer *ngIf="user.role=='FULL_TIME_DEVELOPER'" [user]="user"></full-time-developer>
+    </div>
 </div>
