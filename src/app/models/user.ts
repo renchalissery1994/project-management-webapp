@@ -1,8 +1,8 @@
 export class User {
-    public id: Number;
-    public userName: String;
-    public email: String;
-    public role: String;
+    public id: number;
+    public userName: string;
+    public email: string;
+    public role: string;
     public userSkills: any[];
     public activityAllocations: any[];
 }

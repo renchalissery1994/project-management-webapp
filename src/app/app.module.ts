@@ -13,13 +13,21 @@ import { MatListModule } from '@angular/material/list';
 import { ContractorComponent } from './contractor/contractor.component';
 import { FullTimeDeveloperComponent } from './full-time-developer/full-time-developer.component';
 import { MatButtonModule } from '@angular/material/button';
+import { AppService } from './app.service';
+import { ProjectManagerService } from './project-manager/project-manager.service';
+import { ContractorService } from './contractor/contractor.service';
+import { FullTimeDeveloperService } from './full-time-developer/full-time-developer.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddSkillComponent } from './dialog/add-skill.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectManagerComponent,
     ContractorComponent,
-    FullTimeDeveloperComponent
+    FullTimeDeveloperComponent,
+    AddSkillComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +38,16 @@ import { MatButtonModule } from '@angular/material/button';
     MatExpansionModule,
     MatFormFieldModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatSelectModule
   ],
-  providers: [],
+  providers: [
+    AppService,
+    ProjectManagerService,
+    ContractorService,
+    FullTimeDeveloperService],
+  entryComponents: [AddSkillComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

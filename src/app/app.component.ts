@@ -8,8 +8,8 @@ import { User } from './models/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public project: string = 'Project Management';
-  public userName: string = 'Ren';
+  
+  public userName: string;
   public showLogin: boolean = true;
   public user: User;
   constructor(private appService: AppService) { }
