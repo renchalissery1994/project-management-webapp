@@ -46,9 +46,8 @@ export class ProjectManagerComponent implements OnInit {
   addUserSkill(user: User, userSkill: UserSkill) {
     this.appService.addUserSkill(user.id, userSkill).subscribe(usr => {
       this.users.forEach(user => {
-        if (user.id == usr.id) user = usr;
+        if (user.id == usr.id) user.userSkills = usr.userSkills;
       });
-      this.user = user;
     });
   }
 
