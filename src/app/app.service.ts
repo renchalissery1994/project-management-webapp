@@ -17,6 +17,9 @@ export class AppService {
         return this.http.get<User>(environment.apiUrl + '/user/login?userName=' + userName);
     }
 
+    registerUser(user: User): Observable<User> {
+        return this.http.post<User>(environment.apiUrl + '/user/save', user);
+    }
     getAllSkills(): Observable<Skill[]> {
         return this.http.get<Skill[]>(environment.apiUrl + '/skill/list');
     }
