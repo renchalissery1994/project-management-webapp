@@ -9,9 +9,11 @@ import { User } from './models/user';
 })
 export class AppComponent {
   
+  public isRegister: boolean;
   public userName: string;
   public showLogin: boolean = true;
   public user: User;
+  public newUser: User = new User();
   constructor(private appService: AppService) { }
 
   login() {
@@ -21,4 +23,19 @@ export class AppComponent {
     });
   }
 
+  registerUser() {
+    this.newUser.id = parseInt(Date.now().toString().slice(7,13));
+    this.appService.registerUser(this.newUser).subscribe(user => {
+      this.isRegister = false;
+      this.showLogin = true;
+      if(user==null) alert('Failed to register.');
+    });
+  }
+
+
+  showRegister() {
+      this.isRegister = true;
+      this.showLogin=false;
+
+    }
 }
