@@ -6,6 +6,9 @@ import { AppService } from '../app.service';
 import { MatDialog } from '@angular/material';
 import { AddSkillComponent } from '../dialog/add-skill.component';
 import { UserSkill } from '../models/user-skill';
+import { AddActivityComponent } from '../dialog/add-activity-dialog';
+import { Activity } from '../models/activity';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'project-manager',
@@ -39,6 +42,40 @@ export class ProjectManagerComponent implements OnInit {
         userSkill.skillLevel = result.skillLevel;
         userSkill.skill = result.newSkill;
         this.addUserSkill(user, userSkill);
+      }
+    });
+  }
+
+
+  openActivityDialog(project): void {
+    const dialogRef = this.dialog.open(AddActivityComponent, {
+      width: '450px',
+      data: {
+        activityName: null,
+        dependencyActivityId: null,
+        startWeek: 0,
+        endWeek: 0,
+        requiredSkills: new FormControl(),
+        skills: this.skills,
+        dependencyActivity: []
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      let activity = new Activity();
+      activity.activityId = parseInt(Date.now().toString().slice(7, 13));
+      activity.activityName = result.activityName;
+      activity.dependencyActivityId = result.dependencyActivityId;
+      activity.startWeek = result.startWeek;
+      activity.endWeek = result.endWeek;
+      activity.requiredSkills = result.requiredSkills.value;
+      console.log(activity);
+      if (activity != undefined) {
+        this.projectManagerService.addActivity(this.user.id, project.projectId, activity).subscribe(usr => {
+          this.users.forEach(user => {
+            if (user.id == usr.id) user.userSkills = usr.userSkills;
+          });
+        });
       }
     });
   }

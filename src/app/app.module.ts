@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectManagerComponent } from './project-manager/project-manager.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AddRateComponent } from './dialog/add-rate-dialog';
 import { AddBlockedWeekComponent } from './dialog/add-blocked-week-dialog';
 import { MatTableModule } from '@angular/material/table';
+import { AddActivityComponent } from './dialog/add-activity-dialog';
 
 @NgModule({
   declarations: [
@@ -32,11 +33,13 @@ import { MatTableModule } from '@angular/material/table';
     FullTimeDeveloperComponent,
     AddSkillComponent,
     AddRateComponent,
-    AddBlockedWeekComponent
+    AddBlockedWeekComponent,
+    AddActivityComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatInputModule,
@@ -53,7 +56,7 @@ import { MatTableModule } from '@angular/material/table';
     ProjectManagerService,
     ContractorService,
     FullTimeDeveloperService],
-  entryComponents: [AddSkillComponent, AddRateComponent, AddBlockedWeekComponent],
+  entryComponents: [AddSkillComponent, AddRateComponent, AddBlockedWeekComponent, AddActivityComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

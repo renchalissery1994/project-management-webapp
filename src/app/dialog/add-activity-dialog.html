@@ -1,0 +1,45 @@
+<style>
+    .mat-form-field {
+        display: inline-block;
+        position: relative;
+        text-align: left;
+        margin: 0 10px;
+    }
+</style>
+<h1 mat-dialog-title>Add Activity</h1>
+<div mat-dialog-content style="display: flex;flex-wrap: wrap;">
+    <mat-form-field>
+        <mat-label>Activity Name</mat-label>
+        <input matInput type="text" [(ngModel)]="data.activityName" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Start Week</mat-label>
+        <input matInput type="number" min="1" max="52" [(ngModel)]="data.startWeek" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>End Week</mat-label>
+        <input matInput type="number" min="1" max="52" [(ngModel)]="data.endWeek" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Dependency Activity ID</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let da of data.dependencyActivity" [value]="data.dependencyActivityId"
+                (click)="data.dependencyActivityId=da.activityId">
+                {{da.activityId}} - {{da.activityName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Required Skills</mat-label>
+        <mat-select [formControl]="data.requiredSkills" multiple>
+            <mat-option *ngFor="let skill of data.skills" [value]="skill">
+                {{skill.skillName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="data.activityName==null||data.startWeek==null||data.endWeek==null"
+        [mat-dialog-close]="data">Add</button>{{data.requiredSkills}}
+</div>
