@@ -9,6 +9,7 @@ export interface DialogData {
     endWeek: number;
     startWeek: number;
     requiredSkills: FormControl;
+    skillLevel: number;
     skills: Skill[];
     dependencyActivity: { activityId: string, activityName: string }[]
 }

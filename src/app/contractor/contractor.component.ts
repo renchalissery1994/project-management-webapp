@@ -28,7 +28,7 @@ export class ContractorComponent implements OnInit {
 
   openSkillDialog(): void {
     const dialogRef = this.dialog.open(AddSkillComponent, {
-      width: '250px',
+      width: '450px',
       data: { skills: this.skills, skillLevel: null, newSkill: null }
     });
 
@@ -44,7 +44,7 @@ export class ContractorComponent implements OnInit {
 
   openRateDialog(): void {
     const dialogRef = this.dialog.open(AddRateComponent, {
-      width: '250px',
+      width: '450px',
       data: { weeks: 0, rate: 0 }
     });
 

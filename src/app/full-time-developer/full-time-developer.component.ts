@@ -28,7 +28,7 @@ export class FullTimeDeveloperComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddSkillComponent, {
-      width: '250px',
+      width: '450px',
       data: { skills: this.skills, skillLevel: null, newSkill: null }
     });
 
@@ -44,7 +44,7 @@ export class FullTimeDeveloperComponent implements OnInit {
 
   openAvailabilityDialog(): void {
     const dialogRef = this.dialog.open(AddBlockedWeekComponent, {
-      width: '250px',
+      width: '450px',
       data: { week: null, type: null }
     });
 

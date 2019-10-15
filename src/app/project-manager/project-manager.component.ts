@@ -32,7 +32,7 @@ export class ProjectManagerComponent implements OnInit {
 
   openDialog(user: User): void {
     const dialogRef = this.dialog.open(AddSkillComponent, {
-      width: '250px',
+      width: '450px',
       data: { skills: this.skills, skillLevel: null, newSkill: null }
     });
 
@@ -48,6 +48,17 @@ export class ProjectManagerComponent implements OnInit {
 
 
   openActivityDialog(project): void {
+    let activity: { activityId: string, activityName: string }[] = [];
+    let user: any = this.user;
+    if (user && user.projectsManaged) {
+      user.projectsManaged.forEach(project => {
+        if (project && project.projectActivities) {
+          project.projectActivities.forEach(a => {
+            activity.push({ activityId: a.activityId, activityName: a.activityName })
+          });
+        }
+      });
+    }
     const dialogRef = this.dialog.open(AddActivityComponent, {
       width: '450px',
       data: {
@@ -56,26 +67,34 @@ export class ProjectManagerComponent implements OnInit {
         startWeek: 0,
         endWeek: 0,
         requiredSkills: new FormControl(),
+        skillLevel: 0,
         skills: this.skills,
-        dependencyActivity: []
+        dependencyActivity: activity
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      let activity = new Activity();
-      activity.activityId = parseInt(Date.now().toString().slice(7, 13));
-      activity.activityName = result.activityName;
-      activity.dependencyActivityId = result.dependencyActivityId;
-      activity.startWeek = result.startWeek;
-      activity.endWeek = result.endWeek;
-      activity.requiredSkills = result.requiredSkills.value;
-      console.log(activity);
-      if (activity != undefined) {
-        this.projectManagerService.addActivity(this.user.id, project.projectId, activity).subscribe(usr => {
-          this.users.forEach(user => {
-            if (user.id == usr.id) user.userSkills = usr.userSkills;
+      if (result) {
+        let activity = new Activity();
+        activity.activityId = parseInt(Date.now().toString().slice(7, 13));
+        activity.activityName = result.activityName;
+        activity.dependencyActivityId = result.dependencyActivityId;
+        activity.startWeek = result.startWeek;
+        activity.endWeek = result.endWeek;
+        activity.requiredSkills = [];
+        console.log(activity);
+        if (result.requiredSkills.value) {
+          result.requiredSkills.value.forEach(skill => {
+            activity.requiredSkills.push({ skillLevel: result.skillLevel, skill: skill })
           });
-        });
+        }
+        if (activity != undefined) {
+          this.projectManagerService.addActivity(this.user.id, project.projectId, activity).subscribe(user => {
+            this.user = user;
+          });
+        } else {
+          alert('Invalid Data');
+        }
       }
     });
   }

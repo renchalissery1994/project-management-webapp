@@ -3,6 +3,6 @@ export class User {
     public userName: string;
     public email: string;
     public role: string;
-    public userSkills: any[];
-    public activityAllocations: any[];
+    public userSkills: any[] = [];
+    public activityAllocations: any[] = [];
 }

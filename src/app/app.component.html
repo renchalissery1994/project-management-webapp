@@ -1,45 +1,46 @@
-<div style="padding: 30px">
-    <h3>Project Management</h3>
-    <div *ngIf="showLogin">
-        <p>Login</p>        
-        <mat-form-field>
-            <input matInput placeholder="User Name" [(ngModel)]="userName">
-        </mat-form-field>
-        <p><button mat-raised-button color="primary" (click)="login()">Log In</button></p>
-
-        <a (click)="router.navigate(['/search',search.value]);" class="search-area__icon"> 
-            <i class="la la-search"></i>
-        </a>
-    </div>
-
-    <div *ngIf="!isRegister">
-        <p><button  mat-raised-button color="primary" (click)="showRegister()">Registeration Form</button></p>
-    </div>
-
-    
-    <div *ngIf="isRegister">
+<div class="pm">
+    <div *ngIf="showLogin || isRegister" class="box">
+        <div class="head">Project Management</div>
+        <div *ngIf="showLogin">
             <mat-form-field>
-              <input matInput placeholder="userName" [(ngModel)]="newUser.userName">
-            </mat-form-field><br>
-          
-            <mat-form-field>
-              <textarea matInput placeholder="email" [(ngModel)]="newUser.email"></textarea>
-            </mat-form-field><br>
-
-            <mat-form-field>
-                <mat-label>role</mat-label>
-                <select matNativeControl [(ngModel)]="newUser.role">
-                    <option value="PROJECT_MANAGER">Project Manager</option>
-                    <option value="CONTRACTOR">Contractor</option>
-                    <option value="FULL_TIME_DEVELOPER">Full time developer</option>
-                </select>
+                <input matInput placeholder="User Name" [(ngModel)]="userName">
             </mat-form-field>
-            <p><button mat-raised-button color="success" (click)="registerUser()">Register</button></p>
+            <p><button mat-raised-button color="primary" (click)="login()">Log In</button></p>
+
+            <a (click)="router.navigate(['/search',search.value]);" class="search-area__icon">
+                <i class="la la-search"></i>
+            </a>
+        </div>
+
+        <div *ngIf="!isRegister">
+            <p><button mat-raised-button color="primary" (click)="showRegister()">Create</button></p>
+        </div>
+
+
+        <div *ngIf="isRegister">
+            <mat-form-field>
+                <input matInput placeholder="User Name" [(ngModel)]="newUser.userName">
+            </mat-form-field><br>
+
+            <mat-form-field>
+                <input matInput placeholder="Email" [(ngModel)]="newUser.email">
+            </mat-form-field><br>
+
+            <mat-form-field>
+                <mat-label>Role</mat-label>
+                <mat-select [formControl]="role">
+                    <mat-option value="PROJECT_MANAGER">Project Manager
+                    </mat-option>
+                    <mat-option value="CONTRACTOR">Contractor</mat-option>
+                    <mat-option value="FULL_TIME_DEVELOPER">Full Time Developer</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p><button mat-raised-button color="primary" (click)="registerUser()">Register</button></p>
+        </div>
     </div>
 
-    
 
-    <div *ngIf="!showLogin && user">
+    <div class="data" *ngIf="!showLogin && user">
         <project-manager *ngIf="user.role=='PROJECT_MANAGER'" [user]="user"></project-manager>
         <contractor *ngIf="user.role=='CONTRACTOR'" [user]="user"></contractor>
         <full-time-developer *ngIf="user.role=='FULL_TIME_DEVELOPER'" [user]="user"></full-time-developer>

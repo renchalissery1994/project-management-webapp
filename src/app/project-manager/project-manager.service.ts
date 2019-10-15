@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { environment } from './../../environments/environment';
 import { Activity } from '../models/activity';
+import { ActivityAllocation } from '../models/activity-allocation';
 
 @Injectable({
     providedIn: 'root',
@@ -20,4 +21,7 @@ export class ProjectManagerService {
         return this.http.post<User>(environment.apiUrl + '/projectmanager/addactivity?userId=' + userId + '&projectId=' + projectId, activity);
     }
 
+    allocateActivity(userId: number, projectId: number, activityId: number, activityAllocation: ActivityAllocation): Observable<User> {
+        return this.http.post<User>(environment.apiUrl + '/projectmanager/addactivity?userId=' + userId + '&projectId=' + projectId + '&activityId=' + activityId, activityAllocation);
+    }
 }

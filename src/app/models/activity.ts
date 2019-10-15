@@ -6,5 +6,5 @@ export class Activity {
     dependencyActivityId: number;
     endWeek: number;
     startWeek: number;
-    requiredSkills: Skill[];
+    requiredSkills: { skillLevel: number, skill: Skill }[];
 }

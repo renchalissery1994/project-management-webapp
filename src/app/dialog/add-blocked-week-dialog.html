@@ -1,3 +1,8 @@
+<style>
+    .mat-form-field {
+        width: 100%;
+    }
+</style>
 <h1 mat-dialog-title>Add Blocked Week</h1>
 <div mat-dialog-content>
     <mat-form-field>
@@ -15,5 +20,6 @@
 </div>
 <div mat-dialog-actions>
     <button mat-raised-button (click)="onCancel()">Cancel</button>
-    <button mat-raised-button color="primary" [disabled]="data.week==null||data.type==null||data.week<0||data.week>53" [mat-dialog-close]="data">Add</button>
+    <button mat-raised-button color="primary" [disabled]="data.week==null||data.type==null||data.week<0||data.week>53"
+        [mat-dialog-close]="data">Add</button>
 </div>

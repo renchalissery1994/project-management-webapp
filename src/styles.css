@@ -7,7 +7,28 @@ body {
     background-color: lightsteelblue;
 }
 .role{
-    position: absolute;
-    right: 30px;
-    top: 70px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+.pm {
+    background-image: url('./assets/pm.jpg');
+    background-repeat: no-repeat;
+    padding: 30px 0;
+    background-size: cover;
+    height: 150%;
+}
+.mat-form-field {
+    width: 65%;
+}
+.data {
+    background-color: lightgray;
+    padding: 20px;
+    margin: 30px 10%;
+    opacity: 0.99;
+    border-radius: 5px;
+    box-shadow: 0px 0px 80px -14px rgba(0,0,0,0.75);
+}
+h1 {
+    text-align: center;
 }

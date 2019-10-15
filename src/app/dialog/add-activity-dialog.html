@@ -4,6 +4,7 @@
         position: relative;
         text-align: left;
         margin: 0 10px;
+        width: 100%;
     }
 </style>
 <h1 mat-dialog-title>Add Activity</h1>
@@ -23,7 +24,7 @@
     <mat-form-field>
         <mat-label>Dependency Activity ID</mat-label>
         <mat-select>
-            <mat-option *ngFor="let da of data.dependencyActivity" [value]="data.dependencyActivityId"
+            <mat-option *ngFor="let da of data.dependencyActivity" [value]="da"
                 (click)="data.dependencyActivityId=da.activityId">
                 {{da.activityId}} - {{da.activityName}}
             </mat-option>
@@ -37,9 +38,14 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+    <mat-form-field>
+        <mat-label>Required Skill Level</mat-label>
+        <input matInput type="number" min="0" max="10" [(ngModel)]="data.skillLevel">
+    </mat-form-field>
 </div>
 <div mat-dialog-actions>
     <button mat-raised-button (click)="onCancel()">Cancel</button>
-    <button mat-raised-button color="primary" [disabled]="data.activityName==null||data.startWeek==null||data.endWeek==null"
-        [mat-dialog-close]="data">Add</button>{{data.requiredSkills}}
+    <button mat-raised-button color="primary"
+        [disabled]="data.activityName==null||data.startWeek==null||data.endWeek==null"
+        [mat-dialog-close]="data">Add</button>
 </div>
