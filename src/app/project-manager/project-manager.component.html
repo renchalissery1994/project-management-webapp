@@ -1,4 +1,7 @@
-<h4>Project Manager - {{user.userName}}</h4>
+<h4 class="role">Project Manager</h4>
+<h4>Hi, {{user.userName}}</h4>
+
+<h4>Users</h4>
 <mat-accordion>
     <mat-expansion-panel *ngFor="let user of users">
         <mat-expansion-panel-header>
@@ -60,29 +63,24 @@
             <ng-container matColumnDef="requiredSkills">
                 <th mat-header-cell *matHeaderCellDef>Skills Required</th>
                 <td mat-cell *matCellDef="let ele">
-                    <!-- <table mat-table [dataSource]="ele" class="mat-elevation-z8">
-                        <ng-container matColumnDef="activityId">
-                            <th mat-header-cell *matHeaderCellDef>ID</th>
-                            <td mat-cell *matCellDef="let ele"> {{ele.activityId}} </td>
+                    <table mat-table [dataSource]="ele.requiredSkills">
+                        <ng-container matColumnDef="skill.skillId">
+                            <th mat-header-cell *matHeaderCellDef>Skill ID</th>
+                            <td mat-cell *matCellDef="let ele"> {{ele.skill.skillId}} </td>
                         </ng-container>
-                        <ng-container matColumnDef="activityName">
-                            <th mat-header-cell *matHeaderCellDef>Activity Name</th>
-                            <td mat-cell *matCellDef="let ele"> {{ele.activityName}} </td>
+                        <ng-container matColumnDef="skill.skillName">
+                            <th mat-header-cell *matHeaderCellDef>Skill Name</th>
+                            <td mat-cell *matCellDef="let ele"> {{ele.skill.skillName}} </td>
                         </ng-container>
-                        <ng-container matColumnDef="startWeek">
-                            <th mat-header-cell *matHeaderCellDef>Start Week</th>
-                            <td mat-cell *matCellDef="let ele"> {{ele.startWeek}} </td>
+                        <ng-container matColumnDef="skillLevel">
+                            <th mat-header-cell *matHeaderCellDef>Skill Level</th>
+                            <td mat-cell *matCellDef="let ele"> {{ele.skillLevel}} </td>
                         </ng-container>
-                        <ng-container matColumnDef="endWeek">
-                            <th mat-header-cell *matHeaderCellDef>End Week</th>
-                            <td mat-cell *matCellDef="let ele"> {{ele.endWeek}} </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="['activityId', 'activityName', 'startWeek', 'endWeek']">
+                        <tr mat-header-row *matHeaderRowDef="['skill.skillId', 'skill.skillName', 'skillLevel']">
                         </tr>
-                        <tr mat-row
-                            *matRowDef="let row; columns: ['activityId', 'activityName', 'startWeek', 'endWeek'];">
+                        <tr mat-row *matRowDef="let row; columns: ['skill.skillId', 'skill.skillName', 'skillLevel'];">
                         </tr>
-                    </table> -->
+                    </table>
                 </td>
             </ng-container>
             <tr mat-header-row
