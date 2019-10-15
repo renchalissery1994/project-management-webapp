@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { environment } from './../../environments/environment';
 import { Activity } from '../models/activity';
 import { ActivityAllocation } from '../models/activity-allocation';
+import { Skill } from '../models/skill';
 
 @Injectable({
     providedIn: 'root',
@@ -27,5 +28,9 @@ export class ProjectManagerService {
 
     createProject(userId: number, project: any): Observable<User> {
         return this.http.post<User>(environment.apiUrl + '/projectmanager/createproject?userId=' + userId, project);
+    }
+
+    createSkill(skill: any): Observable<Skill[]> {
+        return this.http.post<Skill[]>(environment.apiUrl + '/skill/create', skill);
     }
 }

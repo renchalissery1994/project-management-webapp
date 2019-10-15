@@ -12,6 +12,7 @@ import { FormControl } from '@angular/forms';
 import { AllocateActivityComponent } from '../dialog/allocate-activity-dialog';
 import { ActivityAllocation } from '../models/activity-allocation';
 import { CreateProjectComponent } from '../dialog/create-project-dialog';
+import { CreateSkillComponent } from '../dialog/add-new-skill-dialog';
 
 @Component({
   selector: 'project-manager',
@@ -150,6 +151,21 @@ export class ProjectManagerComponent implements OnInit {
       if (result != undefined && result.projectId != undefined && result.projectName != undefined) {
         this.projectManagerService.createProject(this.user.id, result).subscribe(user => {
           this.user = user;
+        });
+      }
+    });
+  }
+
+  addSkill() {
+    const dialogRef = this.dialog.open(CreateSkillComponent, {
+      width: '450px',
+      data: { skillId: parseInt(Date.now().toString().slice(7, 13)), skillName: null }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined) {
+        this.projectManagerService.createSkill(result).subscribe(skills => {
+          this.skills = skills;
         });
       }
     });

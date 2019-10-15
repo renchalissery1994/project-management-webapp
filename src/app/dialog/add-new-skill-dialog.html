@@ -1,0 +1,17 @@
+<style>
+    .mat-form-field {
+        width: 100%;
+    }
+</style>
+<h1 mat-dialog-title>Create Skill</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Skill Name</mat-label>
+        <input matInput type="text" [(ngModel)]="data.skillName" required>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="data.skillName==null"
+        [mat-dialog-close]="data">Create</button>
+</div>

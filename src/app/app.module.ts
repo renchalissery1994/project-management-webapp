@@ -26,6 +26,7 @@ import { MatTableModule } from '@angular/material/table';
 import { AddActivityComponent } from './dialog/add-activity-dialog';
 import { AllocateActivityComponent } from './dialog/allocate-activity-dialog';
 import { CreateProjectComponent } from './dialog/create-project-dialog';
+import { CreateSkillComponent } from './dialog/add-new-skill-dialog';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CreateProjectComponent } from './dialog/create-project-dialog';
     AddBlockedWeekComponent,
     AddActivityComponent,
     AllocateActivityComponent,
-    CreateProjectComponent
+    CreateProjectComponent,
+    CreateSkillComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ import { CreateProjectComponent } from './dialog/create-project-dialog';
     AddBlockedWeekComponent,
     AddActivityComponent,
     AllocateActivityComponent,
-    CreateProjectComponent
+    CreateProjectComponent,
+    CreateSkillComponent
   ],
   bootstrap: [AppComponent]
 })

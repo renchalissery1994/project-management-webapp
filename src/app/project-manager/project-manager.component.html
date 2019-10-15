@@ -26,6 +26,7 @@
                 {{skillDetails.skillLevel}}</mat-list-item>
                 <p *ngIf="user.userSkills && !user.userSkills[0]">No Skills</p>
         </mat-list>
+        <button style="position: absolute;right: 14%;margin: -49px 0;" mat-raised-button class="save" color="primary" (click)="addSkill()">Create Skill</button>
         <p><button mat-raised-button color="primary" (click)="openDialog(user)">Add Skill</button></p>
         <h4 *ngIf="!user.activityAllocations[0]">Not allocated to any activity</h4>
         <p *ngIf="user.activityAllocations[0]">Activities</p>
@@ -84,7 +85,7 @@
 </mat-accordion>
 
 <h4>Projects</h4>
-<button style="position: absolute;right: 11%;margin: -40px 0;" mat-raised-button class="save" color="primary" (click)="addProject()">Add Project</button>
+<button style="position: absolute;right: 11%;margin: -49px 0;" mat-raised-button class="save" color="primary" (click)="addProject()">Create Project</button>
 <mat-accordion>
     <mat-expansion-panel *ngFor="let project of user.projectsManaged" [expanded]="true">
         <mat-expansion-panel-header>
