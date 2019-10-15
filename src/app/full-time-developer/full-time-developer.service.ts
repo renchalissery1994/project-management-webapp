@@ -11,4 +11,7 @@ export class FullTimeDeveloperService {
 
     constructor(private http: HttpClient) { }
 
+    addAvailability(userId: number, week: number, type: number,): Observable<User> {
+        return this.http.get<User>(environment.apiUrl + '/fulltimedeveloper/addavailability?userId=' + userId+'&week='+week+'&type='+type);
+    }
 }

@@ -11,4 +11,8 @@ export class ContractorService {
 
     constructor(private http: HttpClient) { }
 
+    addRate(userId: number, weeks: number, rate: number,): Observable<User> {
+        return this.http.get<User>(environment.apiUrl + '/contractor/addrate?userId=' + userId+'&weeks='+weeks+'&rate='+rate);
+    }
+
 }

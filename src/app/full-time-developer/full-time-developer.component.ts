@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { Skill } from '../models/skill';
 import { AddSkillComponent } from '../dialog/add-skill.component';
 import { AppService } from '../app.service';
+import { AddBlockedWeekComponent } from '../dialog/add-blocked-week-dialog';
 
 @Component({
   selector: 'full-time-developer',
@@ -37,6 +38,22 @@ export class FullTimeDeveloperComponent implements OnInit {
         userSkill.skillLevel = result.skillLevel;
         userSkill.skill = result.newSkill;
         this.addUserSkill(userSkill);
+      }
+    });
+  }
+
+  openAvailabilityDialog(): void {
+    const dialogRef = this.dialog.open(AddBlockedWeekComponent, {
+      width: '250px',
+      data: { week: null, type: null }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result != undefined && result.week != undefined && result.type != undefined) {
+        this.fullTimeDeveloperService.addAvailability(this.user.id, result.week, result.type).subscribe(user => {
+          this.user = user;
+        });
       }
     });
   }

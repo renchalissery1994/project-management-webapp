@@ -27,7 +27,7 @@ export class ProjectManagerComponent implements OnInit {
     this.appService.getAllSkills().subscribe(skills => { this.skills = skills });
   }
 
-  openDialog(): void {
+  openDialog(user: User): void {
     const dialogRef = this.dialog.open(AddSkillComponent, {
       width: '250px',
       data: { skills: this.skills, skillLevel: null, newSkill: null }
@@ -38,13 +38,16 @@ export class ProjectManagerComponent implements OnInit {
         let userSkill: UserSkill = new UserSkill();
         userSkill.skillLevel = result.skillLevel;
         userSkill.skill = result.newSkill;
-        this.addUserSkill(userSkill);
+        this.addUserSkill(user, userSkill);
       }
     });
   }
 
-  addUserSkill(userSkill: UserSkill) {
-    this.appService.addUserSkill(this.user.id, userSkill).subscribe(user => {
+  addUserSkill(user: User, userSkill: UserSkill) {
+    this.appService.addUserSkill(user.id, userSkill).subscribe(usr => {
+      this.users.forEach(user => {
+        if (user.id == usr.id) user = usr;
+      });
       this.user = user;
     });
   }

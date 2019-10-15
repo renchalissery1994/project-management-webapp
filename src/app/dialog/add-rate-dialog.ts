@@ -1,21 +1,19 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Skill } from '../models/skill';
 
 export interface DialogData {
-    skills: Skill[];
-    skillLevel: number;
-    newSkill: Skill;
+    weeks: number;
+    rate: number;
 }
 
 @Component({
-    selector: 'add-skill-dialog',
-    templateUrl: 'add-skill-dialog.html',
+    selector: 'add-rate-dialog',
+    templateUrl: 'add-rate-dialog.html',
 })
-export class AddSkillComponent {
+export class AddRateComponent {
 
     constructor(
-        public dialogRef: MatDialogRef<AddSkillComponent>,
+        public dialogRef: MatDialogRef<AddRateComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
     onCancel(): void {

@@ -22,6 +22,6 @@
             <mat-list-item *ngFor="let skillDetails of user.userSkills">{{skillDetails.skill.skillName}} -
                 {{skillDetails.skillLevel}}</mat-list-item>
         </mat-list>
-        <p><button mat-raised-button color="primary" (click)="openDialog()">Add Skill</button></p>
+        <p><button mat-raised-button color="primary" (click)="openDialog(user)">Add Skill</button></p>
     </mat-expansion-panel>
 </mat-accordion>

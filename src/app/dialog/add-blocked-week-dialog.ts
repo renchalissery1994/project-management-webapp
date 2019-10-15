@@ -1,21 +1,20 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Skill } from '../models/skill';
 
 export interface DialogData {
-    skills: Skill[];
-    skillLevel: number;
-    newSkill: Skill;
+    week: number;
+    type: number;
 }
 
 @Component({
-    selector: 'add-skill-dialog',
-    templateUrl: 'add-skill-dialog.html',
+    selector: 'add-blocked-week-dialog',
+    templateUrl: 'add-blocked-week-dialog.html',
 })
-export class AddSkillComponent {
+export class AddBlockedWeekComponent {
 
+    public types: string[] = ['20', '40', '60', '80', '100'];
     constructor(
-        public dialogRef: MatDialogRef<AddSkillComponent>,
+        public dialogRef: MatDialogRef<AddBlockedWeekComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
     onCancel(): void {

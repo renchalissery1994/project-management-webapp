@@ -20,6 +20,8 @@ import { FullTimeDeveloperService } from './full-time-developer/full-time-develo
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddSkillComponent } from './dialog/add-skill.component';
 import { MatSelectModule } from '@angular/material/select';
+import { AddRateComponent } from './dialog/add-rate-dialog';
+import { AddBlockedWeekComponent } from './dialog/add-blocked-week-dialog';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { MatSelectModule } from '@angular/material/select';
     ProjectManagerComponent,
     ContractorComponent,
     FullTimeDeveloperComponent,
-    AddSkillComponent
+    AddSkillComponent,
+    AddRateComponent,
+    AddBlockedWeekComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,7 @@ import { MatSelectModule } from '@angular/material/select';
     ProjectManagerService,
     ContractorService,
     FullTimeDeveloperService],
-  entryComponents: [AddSkillComponent],
+  entryComponents: [AddSkillComponent, AddRateComponent, AddBlockedWeekComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
