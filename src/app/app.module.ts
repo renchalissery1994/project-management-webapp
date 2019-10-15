@@ -22,6 +22,7 @@ import { AddSkillComponent } from './dialog/add-skill.component';
 import { MatSelectModule } from '@angular/material/select';
 import { AddRateComponent } from './dialog/add-rate-dialog';
 import { AddBlockedWeekComponent } from './dialog/add-blocked-week-dialog';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AddBlockedWeekComponent } from './dialog/add-blocked-week-dialog';
     MatListModule,
     MatButtonModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [
     AppService,

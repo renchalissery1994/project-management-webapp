@@ -25,3 +25,72 @@
         <p><button mat-raised-button color="primary" (click)="openDialog(user)">Add Skill</button></p>
     </mat-expansion-panel>
 </mat-accordion>
+
+<h4>Projects</h4>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let project of user.projectsManaged">
+        <mat-expansion-panel-header>
+            <mat-panel-title>{{project.projectName}}</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+            <input matInput placeholder="Project ID" [(ngModel)]="project.projectId" disabled>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Project Name" [(ngModel)]="project.projectName">
+        </mat-form-field>
+        <p>Activities</p>
+        <table mat-table [dataSource]="project.projectActivities" class="mat-elevation-z8">
+            <ng-container matColumnDef="activityId">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let element"> {{element.activityId}} </td>
+            </ng-container>
+            <ng-container matColumnDef="activityName">
+                <th mat-header-cell *matHeaderCellDef>Activity Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.activityName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="startWeek">
+                <th mat-header-cell *matHeaderCellDef>Start Week</th>
+                <td mat-cell *matCellDef="let element"> {{element.startWeek}} </td>
+            </ng-container>
+            <ng-container matColumnDef="endWeek">
+                <th mat-header-cell *matHeaderCellDef>End Week</th>
+                <td mat-cell *matCellDef="let element"> {{element.endWeek}} </td>
+            </ng-container>
+            <ng-container matColumnDef="requiredSkills">
+                <th mat-header-cell *matHeaderCellDef>Skills Required</th>
+                <td mat-cell *matCellDef="let ele">
+                    <!-- <table mat-table [dataSource]="ele" class="mat-elevation-z8">
+                        <ng-container matColumnDef="activityId">
+                            <th mat-header-cell *matHeaderCellDef>ID</th>
+                            <td mat-cell *matCellDef="let ele"> {{ele.activityId}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="activityName">
+                            <th mat-header-cell *matHeaderCellDef>Activity Name</th>
+                            <td mat-cell *matCellDef="let ele"> {{ele.activityName}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="startWeek">
+                            <th mat-header-cell *matHeaderCellDef>Start Week</th>
+                            <td mat-cell *matCellDef="let ele"> {{ele.startWeek}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="endWeek">
+                            <th mat-header-cell *matHeaderCellDef>End Week</th>
+                            <td mat-cell *matCellDef="let ele"> {{ele.endWeek}} </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="['activityId', 'activityName', 'startWeek', 'endWeek']">
+                        </tr>
+                        <tr mat-row
+                            *matRowDef="let row; columns: ['activityId', 'activityName', 'startWeek', 'endWeek'];">
+                        </tr>
+                    </table> -->
+                </td>
+            </ng-container>
+            <tr mat-header-row
+                *matHeaderRowDef="['activityId', 'activityName', 'startWeek', 'endWeek','requiredSkills']"></tr>
+            <tr mat-row
+                *matRowDef="let row; columns: ['activityId', 'activityName', 'startWeek', 'endWeek','requiredSkills'];">
+            </tr>
+        </table>
+        <p><button mat-raised-button color="primary" (click)="openActivityDialog(user)">Add Activity</button></p>
+    </mat-expansion-panel>
+</mat-accordion>
