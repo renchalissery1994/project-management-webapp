@@ -12,7 +12,6 @@ export interface DialogData {
 })
 export class AddBlockedWeekComponent {
 
-    public types: string[] = ['20', '40', '60', '80', '100'];
     constructor(
         public dialogRef: MatDialogRef<AddBlockedWeekComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData) { }

@@ -1,0 +1,42 @@
+<style>
+    .mat-form-field {
+        display: inline-block;
+        position: relative;
+        text-align: left;
+        margin: 0 10px;
+        width: 100%;
+    }
+</style>
+<h1 mat-dialog-title>Allocate Activity</h1>
+<div mat-dialog-content style="display: flex;flex-wrap: wrap;">
+    <mat-form-field>
+        <mat-label>Activity</mat-label>
+        <mat-select required>
+            <mat-option *ngFor="let a of data.activities" [value]="a" (click)="data.activity=a">
+                {{a.projectId}} - {{a.activityId}} - {{a.activityName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Involvement Rate</mat-label>
+        <mat-select required>
+            <mat-option *ngFor="let rate of [10,20,40,60,80,100]" [value]="data.involvementRate" (click)="data.involvementRate=rate">
+                {{rate}}%
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Start Week</mat-label>
+        <input matInput type="number" min="1" max="52" [(ngModel)]="data.startWeek" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>End Week</mat-label>
+        <input matInput type="number" min="1" max="52" [(ngModel)]="data.endWeek" required>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary"
+        [disabled]="data.activity==null||data.involvementRate==null||data.startWeek==null||data.endWeek==null"
+        [mat-dialog-close]="data">Add</button>
+</div>

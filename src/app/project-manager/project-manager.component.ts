@@ -9,6 +9,8 @@ import { UserSkill } from '../models/user-skill';
 import { AddActivityComponent } from '../dialog/add-activity-dialog';
 import { Activity } from '../models/activity';
 import { FormControl } from '@angular/forms';
+import { AllocateActivityComponent } from '../dialog/allocate-activity-dialog';
+import { ActivityAllocation } from '../models/activity-allocation';
 
 @Component({
   selector: 'project-manager',
@@ -95,6 +97,43 @@ export class ProjectManagerComponent implements OnInit {
         } else {
           alert('Invalid Data');
         }
+      }
+    });
+  }
+
+  openAllocationDialog(user: User) {
+    let activities: { projectId: number, activityId: string, activityName: string }[] = [];
+    let userPM: any = this.user;
+    if (userPM && userPM.projectsManaged) {
+      userPM.projectsManaged.forEach(project => {
+        if (project && project.projectActivities) {
+          project.projectActivities.forEach(a => {
+            activities.push({ projectId: project.projectId, activityId: a.activityId, activityName: a.activityName })
+          });
+        }
+      });
+    }
+    const dialogRef = this.dialog.open(AllocateActivityComponent, {
+      width: '450px',
+      data: {
+        activity: null,
+        involvementRate: null,
+        endWeek: 0,
+        startWeek: 0,
+        activities: activities
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined) {
+        let allocation = new ActivityAllocation();
+        allocation.activityId = result.activity.activityId;
+        allocation.involvementRate = result.involvementRate;
+        allocation.startWeek = result.startWeek;
+        allocation.endWeek = result.endWeek;
+        this.projectManagerService.allocateActivity(user.id, result.activity.projectId, result.activity.activityId, allocation).subscribe(usr => {
+          this.projectManagerService.getUsers().subscribe(users => { this.users = users });
+        });
       }
     });
   }

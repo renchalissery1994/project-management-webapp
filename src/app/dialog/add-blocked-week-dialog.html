@@ -12,7 +12,7 @@
     <mat-form-field>
         <mat-label>Availability</mat-label>
         <mat-select required>
-            <mat-option *ngFor="let type of types" [value]="data.type" (click)="data.type=type">
+            <mat-option *ngFor="let type of [20, 40, 60, 80, 100]" [value]="data.type" (click)="data.type=type">
                 {{type}}%
             </mat-option>
         </mat-select>

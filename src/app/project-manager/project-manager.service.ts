@@ -22,6 +22,6 @@ export class ProjectManagerService {
     }
 
     allocateActivity(userId: number, projectId: number, activityId: number, activityAllocation: ActivityAllocation): Observable<User> {
-        return this.http.post<User>(environment.apiUrl + '/projectmanager/addactivity?userId=' + userId + '&projectId=' + projectId + '&activityId=' + activityId, activityAllocation);
+        return this.http.post<User>(environment.apiUrl + '/projectmanager/allocateActivity?userId=' + userId + '&projectId=' + projectId + '&activityId=' + activityId, activityAllocation);
     }
 }
