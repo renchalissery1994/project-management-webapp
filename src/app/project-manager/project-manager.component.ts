@@ -11,6 +11,7 @@ import { Activity } from '../models/activity';
 import { FormControl } from '@angular/forms';
 import { AllocateActivityComponent } from '../dialog/allocate-activity-dialog';
 import { ActivityAllocation } from '../models/activity-allocation';
+import { CreateProjectComponent } from '../dialog/create-project-dialog';
 
 @Component({
   selector: 'project-manager',
@@ -68,6 +69,7 @@ export class ProjectManagerComponent implements OnInit {
         dependencyActivityId: null,
         startWeek: 0,
         endWeek: 0,
+        daysRequired: 0,
         requiredSkills: new FormControl(),
         skillLevel: 0,
         skills: this.skills,
@@ -83,8 +85,8 @@ export class ProjectManagerComponent implements OnInit {
         activity.dependencyActivityId = result.dependencyActivityId;
         activity.startWeek = result.startWeek;
         activity.endWeek = result.endWeek;
+        activity.daysRequired = result.daysRequired;
         activity.requiredSkills = [];
-        console.log(activity);
         if (result.requiredSkills.value) {
           result.requiredSkills.value.forEach(skill => {
             activity.requiredSkills.push({ skillLevel: result.skillLevel, skill: skill })
@@ -133,6 +135,21 @@ export class ProjectManagerComponent implements OnInit {
         allocation.endWeek = result.endWeek;
         this.projectManagerService.allocateActivity(user.id, result.activity.projectId, result.activity.activityId, allocation).subscribe(usr => {
           this.projectManagerService.getUsers().subscribe(users => { this.users = users });
+        });
+      }
+    });
+  }
+
+  addProject() {
+    const dialogRef = this.dialog.open(CreateProjectComponent, {
+      width: '450px',
+      data: { projectId: parseInt(Date.now().toString().slice(7, 13)), projectName: null, projectActivities: [] }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined && result.projectId != undefined && result.projectName != undefined) {
+        this.projectManagerService.createProject(this.user.id, result).subscribe(user => {
+          this.user = user;
         });
       }
     });

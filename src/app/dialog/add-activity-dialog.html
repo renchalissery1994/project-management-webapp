@@ -22,6 +22,10 @@
         <input matInput type="number" min="1" max="52" [(ngModel)]="data.endWeek" required>
     </mat-form-field>
     <mat-form-field>
+        <mat-label>Days Required</mat-label>
+        <input matInput type="number" min="0" max="365" [(ngModel)]="data.daysRequired" required>
+    </mat-form-field>
+    <mat-form-field>
         <mat-label>Dependency Activity ID</mat-label>
         <mat-select>
             <mat-option *ngFor="let da of data.dependencyActivity" [value]="da"

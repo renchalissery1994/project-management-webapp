@@ -25,6 +25,7 @@ import { AddBlockedWeekComponent } from './dialog/add-blocked-week-dialog';
 import { MatTableModule } from '@angular/material/table';
 import { AddActivityComponent } from './dialog/add-activity-dialog';
 import { AllocateActivityComponent } from './dialog/allocate-activity-dialog';
+import { CreateProjectComponent } from './dialog/create-project-dialog';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AllocateActivityComponent } from './dialog/allocate-activity-dialog';
     AddRateComponent,
     AddBlockedWeekComponent,
     AddActivityComponent,
-    AllocateActivityComponent
+    AllocateActivityComponent,
+    CreateProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,14 @@ import { AllocateActivityComponent } from './dialog/allocate-activity-dialog';
     ProjectManagerService,
     ContractorService,
     FullTimeDeveloperService],
-  entryComponents: [AddSkillComponent, AddRateComponent, AddBlockedWeekComponent, AddActivityComponent, AllocateActivityComponent],
+  entryComponents: [
+    AddSkillComponent,
+    AddRateComponent,
+    AddBlockedWeekComponent,
+    AddActivityComponent,
+    AllocateActivityComponent,
+    CreateProjectComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

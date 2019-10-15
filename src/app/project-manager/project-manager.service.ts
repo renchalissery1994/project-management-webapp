@@ -22,6 +22,10 @@ export class ProjectManagerService {
     }
 
     allocateActivity(userId: number, projectId: number, activityId: number, activityAllocation: ActivityAllocation): Observable<User> {
-        return this.http.post<User>(environment.apiUrl + '/projectmanager/allocateActivity?userId=' + userId + '&projectId=' + projectId + '&activityId=' + activityId, activityAllocation);
+        return this.http.post<User>(environment.apiUrl + '/projectmanager/allocateactivity?userId=' + userId + '&projectId=' + projectId + '&activityId=' + activityId, activityAllocation);
+    }
+
+    createProject(userId: number, project: any): Observable<User> {
+        return this.http.post<User>(environment.apiUrl + '/projectmanager/createproject?userId=' + userId, project);
     }
 }

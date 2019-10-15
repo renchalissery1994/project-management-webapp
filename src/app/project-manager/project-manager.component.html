@@ -84,6 +84,7 @@
 </mat-accordion>
 
 <h4>Projects</h4>
+<button style="position: absolute;right: 11%;margin: -40px 0;" mat-raised-button class="save" color="primary" (click)="addProject()">Add Project</button>
 <mat-accordion>
     <mat-expansion-panel *ngFor="let project of user.projectsManaged" [expanded]="true">
         <mat-expansion-panel-header>
