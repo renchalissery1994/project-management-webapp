@@ -23,9 +23,13 @@ export class AppService {
     getAllSkills(): Observable<Skill[]> {
         return this.http.get<Skill[]>(environment.apiUrl + '/skill/list');
     }
-    
+
     addUserSkill(userId: number, userSkill: UserSkill): Observable<User> {
         return this.http.post<User>(environment.apiUrl + '/skill/add?userId=' + userId, userSkill);
+    }
+
+    saveData(): Observable<any> {
+        return this.http.get<any>(environment.apiUrl + '/project/save');
     }
 
 }

@@ -20,7 +20,7 @@
     <mat-form-field>
         <mat-label>Involvement Rate</mat-label>
         <mat-select required>
-            <mat-option *ngFor="let rate of [10,20,40,60,80,100]" [value]="data.involvementRate" (click)="data.involvementRate=rate">
+            <mat-option *ngFor="let rate of [20,40,60,80,100]" [value]="data.involvementRate" (click)="data.involvementRate=rate">
                 {{rate}}%
             </mat-option>
         </mat-select>

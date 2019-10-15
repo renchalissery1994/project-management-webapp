@@ -40,6 +40,11 @@ export class AppComponent {
   showRegister() {
     this.isRegister = true;
     this.showLogin = false;
+  }
 
+  saveData() {
+    this.appService.saveData().subscribe(data => {
+      console.log(data);
+    });
   }
 }
