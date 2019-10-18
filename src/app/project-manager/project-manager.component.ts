@@ -121,8 +121,8 @@ export class ProjectManagerComponent implements OnInit {
       data: {
         activity: null,
         involvementRate: null,
-        endWeek: 0,
-        startWeek: 0,
+        endWeek: 1,
+        startWeek: 1,
         activities: activities
       }
     });
@@ -135,6 +135,7 @@ export class ProjectManagerComponent implements OnInit {
         allocation.startWeek = result.startWeek;
         allocation.endWeek = result.endWeek;
         this.projectManagerService.allocateActivity(user.id, result.activity.projectId, result.activity.activityId, allocation).subscribe(usr => {
+          if(!usr.email) alert("Weeks should be between 1-52!");
           this.projectManagerService.getUsers().subscribe(users => { this.users = users });
         });
       }

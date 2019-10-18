@@ -33,6 +33,8 @@ export class AppComponent {
       this.isRegister = false;
       this.showLogin = true;
       if (user == null) alert('Failed to register.');
+      this.userName = user.userName;
+      this.login();
     });
   }
 
